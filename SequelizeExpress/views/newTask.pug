@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h2 Add New Task
+  form(action='/tasks', method='POST')
+    div
+      label(for='title') Title:
+      input#title(type='text', name='title', required)
+    div
+      label(for='description') Description:
+      textarea#description(name='description')
+    div
+      label(for='status') Status:
+      select#status(name='status')
+        option(value='To Do') To Do
+        option(value='In Progress') In Progress
+        option(value='Done') Done
+    div
+      label(for='dueDate') Due Date:
+      input#dueDate(type='date', name='dueDate')
+    div
+      label(for='projectId') Project:
+      select#projectId(name='projectId')
+        option(value='') Select a project
+        each project in projects
+          option(value=project.id)= project.name
+    div
+      label(for='tags') Tags:
+      select#tags(name='tags', multiple)
+        each tag in tags
+          option(value=tag.id)= tag.name
+    button(type='submit') Add Task
+

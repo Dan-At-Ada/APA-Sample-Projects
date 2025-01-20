@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Task Manager - #{title}
+    link(rel='stylesheet', href='/styles.css')
+  body
+    header
+      h1 Task Manager
+      nav
+        ul
+          li
+            a(href='/') Home
+          li
+            a(href='/tasks/new') Add New Task
+          li
+            a(href='/projects/new') Add New Project
+          li
+            a(href='/tags/new') Add New Tag
+    main
+      block content
+    footer
+      p &copy; 2023 Task Manager. All rights reserved.
+

@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h2 Tasks
+  if tasks.length > 0
+    table.task-list
+      thead
+        tr
+          th Title
+          th Project
+          th Tags
+          th Status
+          th Actions
+      tbody
+        each task in tasks
+          tr
+            td= task.title
+            td= task.Project ? task.Project.name : 'N/A'
+            td
+              if task.Tags && task.Tags.length > 0
+                each tag in task.Tags
+                  span.tag= tag.name
+              else
+                | No tags
+            td= task.status
+            td
+              form(action=`/tasks/${task.id}/update-status`, method='POST', style='display: inline;')
+                select(name='status', onchange='this.form.submit()')
+                  option(value='To Do', selected=task.status === 'To Do') To Do
+                  option(value='In Progress', selected=task.status === 'In Progress') In Progress
+                  option(value='Done', selected=task.status === 'Done') Done
+              form(action=`/tasks/${task.id}/delete`, method='POST', style='display: inline;')
+                button(type='submit') Delete
+  else
+    p No tasks found.
+

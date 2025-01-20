@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 Add New Tag
+  form(action='/tags', method='POST')
+    div
+      label(for='name') Name:
+      input#name(type='text', name='name', required)
+    button(type='submit') Add Tag
+

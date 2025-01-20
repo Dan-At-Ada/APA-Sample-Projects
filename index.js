@@ -8,6 +8,7 @@ const projects = [
   'MultiPageApp',
   'RequestAndResponse',
   'Sequelize',
+  'SequelizeExpress',
   'SinglePageApp'
 ];
 
