@@ -1,13 +1,8 @@
-const { Model, DataTypes } = require('sequelize');
+import { Model, DataTypes } from 'sequelize';
 
 class LibraryItem extends Model {
   static init(sequelize) {
     return super.init({
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
       title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -18,7 +13,8 @@ class LibraryItem extends Model {
       }
     }, {
       sequelize,
-      modelName: 'LibraryItem'
+      modelName: 'LibraryItem',
+      discriminatorKey: 'type'
     });
   }
 }

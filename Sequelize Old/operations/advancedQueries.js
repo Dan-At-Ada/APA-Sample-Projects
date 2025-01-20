@@ -1,5 +1,5 @@
-const { Sequelize } = require('sequelize');
-const { Book, Author } = require('../models');
+import { Sequelize } from 'sequelize';
+import { Book, Author } from '../models/index';
 
 async function advancedQueries() {
   const bookCount = await Book.count();

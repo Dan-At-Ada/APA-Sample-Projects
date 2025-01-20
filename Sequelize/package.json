@@ -1,15 +1,14 @@
 {
-    "name": "sequelize-standalone-app",
-    "version": "1.0.0",
-    "description": "A standalone Node.js app demonstrating Sequelize ORM functions",
-    "main": "app.js",
-    "scripts": {
-      "start": "node app.js"
-    },
-    "dependencies": {
-      "sequelize": "^6.6.5",
-      "sqlite3": "^5.0.2"
-    }
+  "name": "library-management-system",
+  "version": "1.0.0",
+  "description": "A library management system using Sequelize",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6"
   }
-  
-  
+}
+

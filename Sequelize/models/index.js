@@ -1,29 +1,29 @@
-const { Sequelize } = require('sequelize');
-const LibraryItem = require('./LibraryItem');
-const Book = require('./Book');
-const Magazine = require('./Magazine');
-const Author = require('./Author');
+const { Sequelize, DataTypes } = require("sequelize")
+const config = require("../config/database.js")
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './library.sqlite'
-});
+// Add logging function
+const log = (message) => console.log(`[Models] ${message}`)
 
-const models = {
-  LibraryItem: LibraryItem.init(sequelize),
-  Book: Book.init(sequelize),
-  Magazine: Magazine.init(sequelize),
-  Author: Author.init(sequelize)
-};
+log("Initializing Sequelize")
+const sequelize = new Sequelize(config)
 
-// Run `.associate` if it exists,
-// ie create relationships in the ORM
-Object.values(models)
-  .filter(model => typeof model.associate === "function")
-  .forEach(model => model.associate(models));
+const db = {}
 
-module.exports = {
-  ...models,
-  sequelize
-};
+db.sequelize = sequelize
+
+log("Loading models")
+db.LibraryItem = require("./libraryItem.js")(sequelize, DataTypes)
+db.Author = require("./author.js")(sequelize, DataTypes)
+db.Book = require("./book.js")(sequelize, DataTypes)
+db.Magazine = require("./magazine.js")(sequelize, DataTypes)
+
+log("Setting up associations")
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db)
+  }
+})
+
+log("Models initialized")
+module.exports = db
 
